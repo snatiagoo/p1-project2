@@ -1,24 +1,33 @@
-import BuyButton from "./ui/buyButton";
-import product_img from "./ui/images/product.png";
-import Image from "next/image";
-import { getPrice } from "./lib/actions";
+import { SignInButton, SignUpButton } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
-export default function Home() {
-  const price = getPrice();
-  return(
-    <main className = "pt-20">
-      <h1 className = "flex justify-center m-5 text-black font-extrabold text-3xl"> Miraculous book V 3.0</h1>
-      <div className = "flex-col flex justify-center items-center gap-3.5">
-        
-        <Image src={product_img} alt="Product Image" width={200} className="rounded-2xl"/>
+export default async function Home(){
+    const { userId: userId} = await auth();
+    if(userId) redirect('/store');
 
-        <div className = "flex flex-row items-center gap-5">
-          <BuyButton />
-          <text className = "text-black text-lg font-semibold">{price.toFixed(2) + " €"}</text> 
-        </div>
-        
-      </div>
-        
-    </main>
-  );
+    return(
+
+        <main>
+            <div className = "pt-50">
+                <h1 className =" flex justify-center items-center font-extrabold text-orange-500 text-2xl pb-5">Log in to get your Miraculous Book</h1>
+                <h2 className =" flex justify-center items-center font-extrabold text-black">Get all your answers...</h2>
+                <div className = "flex flex-row items-center justify-center gap-5 pt-5">
+                    <SignInButton>
+                        <button className="bg-[#cf4c00] text-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
+                            Sign In
+                        </button>
+                    </SignInButton>
+
+                    <SignUpButton>
+                        <button className="bg-[#f78442] text-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
+                            Sign Up
+                        </button>
+                    </SignUpButton>
+                </div>
+                
+            </div>
+            
+        </main>
+    );
 }

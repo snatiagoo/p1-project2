@@ -1,7 +1,3 @@
 
+export const price = 10.00;
 
-export function getPrice(){
-    return( 
-        10.00
-    );
-}
