@@ -4,7 +4,7 @@ import { clerkMiddleware, createRouteMatcher} from "@clerk/nextjs/server";
 //Dashboard route protection
 
 // basically we set the only public route to be / which is equivalent to home page
-const isPublicRoute = createRouteMatcher(['/']);
+const isPublicRoute = createRouteMatcher(['/', '/api/webhook']);
 
 export default clerkMiddleware(async (auth, request) => {
    

@@ -2,7 +2,6 @@ import BuyButton from "@/app/ui/buyButton";
 import product_img from "@/app/ui/images/product.png";
 import Image from "next/image";
 import { price } from "@/app/lib/actions";
-import { createCheckoutSession } from "../lib/serverActions";
 
 
 export default function Store(){
