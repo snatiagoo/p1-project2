@@ -1,3 +1,5 @@
+
+![CI](https://github.com/snatiagoo/p1-project2/actions/workflows/ci.yml/badge.svg)
 ### Project 2: API Integration (ships ~Week 5, S-week)
 
 - **What:** Anything that calls an external API and stores/transforms results. Stripe test-mode checkout is ideal — hits the Phase 1 gate and preps Phase 2.
