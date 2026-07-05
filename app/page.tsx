@@ -2,7 +2,7 @@ import { SignInButton, SignUpButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
-export default async function Home(){
+export default async function Home(){ // default export as you can see, it woudl be imported as  -> import Home from "..."
     const { userId: userId} = await auth();
     if(userId) redirect('/store');
 
