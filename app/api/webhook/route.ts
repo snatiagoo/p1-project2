@@ -1,5 +1,5 @@
 
-import Stripe from 'stripe';
+import Stripe from 'stripe'; // Default export
 import { createPurchase } from '../../lib/db';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
@@ -23,11 +23,9 @@ export async function POST(request: Request){
     try {
     const event = stripe.webhooks.constructEvent(req,signature,endpointSecret);
 
-    console.log('Event type:', event.type);
-
     switch(event.type){
         case 'checkout.session.completed': {
-            console.log("Hello_0")
+            //console.log("Hello_0")
 
             const obj = event.data.object;
             //store result in database
@@ -36,9 +34,9 @@ export async function POST(request: Request){
             const amount: number | null = obj.amount_total;
             // amount is !amoutn if its 0, so we directly null check it
 
-            if(!client_reference_id || !id || amount === null) return new Response("Error with event data", {status:400});
+            if(!client_reference_id || !id || amount === null || amount === undefined) return new Response("Error with event data", {status:400});
 
-            console.log("Hello_1")
+            //console.log("Hello_1")
             await createPurchase(id, client_reference_id, amount);
 
             break;
