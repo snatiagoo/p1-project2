@@ -15,3 +15,5 @@ Design decision → digital product selling page. With Stripe checkout and stora
 - Success and cancel pages
 - Webhook handler that receives `checkout.session.completed` and stores it in Neon
 - Show the stored result somewhere on the page (proof it worked end-to-end)
+URL:
+p1-project2.vercel.app
